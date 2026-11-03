@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Registro de Estudiantes</title>
+
+</head>
+<body>
+<h1>Registro de Estudiantes</h1>
+
+<h2>Registrar </h2>
+<form id="formulario">
+  <input name="nombre" placeholder="Nombre" required>
+  <input name="apellido" placeholder="Apellido" required>
+  <input name="edad" type="number" min="1" max="120" placeholder="Edad" required>
+  <input name="codigo" placeholder="Código (ej. 2024-001)" required>
+  <input name="carrera" placeholder="Carrera" required>
+  <button type="submit">Registrar estudiante</button>
+</form>
+
+<h2>Consultar </h2>
+<div class="fila">
+  <button class="sec" id="btnTodos" type="button">Ver todos</button>
+  <input id="codigoBuscar" placeholder="Código a buscar">
+  <button class="sec" id="btnBuscar" type="button">Buscar por código</button>
+</div>
+
+<h2>Respuesta</h2>
+<pre id="salida">Aún no se ha realizado ninguna petición.</pre>
+
+<script>
+const salida = document.getElementById('salida');
+
+async function mostrar(promesa) {
+  try {
+    const r = await promesa;
+    const json = await r.json();
+    salida.textContent = 'HTTP ' + r.status + '\n' + JSON.stringify(json, null, 2);
+  } catch (e) {
+    salida.textContent = 'Error de conexión: ' + e.message;
+  }
+}
+
+document.getElementById('formulario').addEventListener('submit', e => {
+  e.preventDefault();
+  mostrar(fetch('api.php', { method: 'POST', body: new FormData(e.target) }));
+});
+document.getElementById('btnTodos').addEventListener('click', () => mostrar(fetch('api.php')));
+document.getElementById('btnBuscar').addEventListener('click', () => {
+  const c = document.getElementById('codigoBuscar').value.trim();
+  mostrar(fetch('api.php?codigo=' + encodeURIComponent(c)));
+});
+</script>
+</body>
+</html>
