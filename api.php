@@ -20,16 +20,16 @@ $config = require __DIR__ . '/config.php';
 $almacen = new AlmacenJson($config['archivo_datos']);
 $mapa = new MapaEstudiantes();
 
-// 1) Registro inicial obligatorio (siempre disponible)
+
 $i = $config['estudiante_inicial'];
 $mapa->agregar(new Estudiante($i['nombre'], $i['apellido'], $i['edad'], $i['codigo'], $i['carrera']));
 
-// 2) Estudiantes registrados anteriormente
+
 $almacen->cargarEn($mapa);
 
 $metodo = $_SERVER['REQUEST_METHOD'];
 
-// ---------------- GET ----------------
+
 if ($metodo === 'GET') {
     if (isset($_GET['codigo'])) {
         $e = $mapa->obtener(trim((string) $_GET['codigo']));
@@ -45,7 +45,7 @@ if ($metodo === 'GET') {
     ]);
 }
 
-// ---------------- POST ----------------
+
 if ($metodo === 'POST') {
     $tipo = $_SERVER['CONTENT_TYPE'] ?? '';
     if (stripos($tipo, 'application/json') !== false) {
@@ -57,7 +57,7 @@ if ($metodo === 'POST') {
         $datos = $_POST;
     }
 
-    // Validación
+
     $errores = [];
     foreach (['nombre', 'apellido', 'edad', 'codigo', 'carrera'] as $campo) {
         if (!isset($datos[$campo]) || trim((string) $datos[$campo]) === '') {
