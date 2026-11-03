@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Registro de Estudiantes en PHP
 
 Proyecto de PHP hecho con programación orientada a objetos. Sirve para registrar y consultar estudiantes usando peticiones GET y POST. Los estudiantes se guardan en un **mapa** (un arreglo asociativo) donde la clave es el código del estudiante, así no se pueden repetir.
@@ -114,3 +115,6 @@ Respuesta cuando se registra bien:
 ## Si algo falla
 - Si no guarda los registros, revisar que la carpeta `data` exista y se pueda escribir en ella.
 - Si sale un error raro, revisar la versión de PHP con `php -v` (debe ser 8.1 o más).
+=======
+# EVALUACION-CONTINUA-ESTRUCTURA1
+>>>>>>> 1093d74aa6432ece464ffce7dc89110729be2bae
