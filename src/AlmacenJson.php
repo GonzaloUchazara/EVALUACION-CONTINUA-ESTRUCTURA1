@@ -6,10 +6,6 @@ namespace App;
 use RuntimeException;
 use Throwable;
 
-/**
- * PHP no conserva datos entre peticiones, por eso el mapa se guarda
- * en un archivo JSON y se reconstruye en cada petición.
- */
 class AlmacenJson
 {
     public function __construct(private string $ruta)
@@ -38,7 +34,7 @@ class AlmacenJson
                     $mapa->agregar($e);
                 }
             } catch (Throwable) {
-                // Registro corrupto: se ignora
+              
             }
         }
     }
