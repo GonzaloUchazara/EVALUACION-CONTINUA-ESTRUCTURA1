@@ -48,7 +48,6 @@ class Estudiante extends Persona
         $this->carrera = $carrera;
     }
 
-    /** @return array<string, string|int> */
     public function toArray(): array
     {
         return [
