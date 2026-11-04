@@ -5,12 +5,10 @@ namespace App;
 
 use RuntimeException;
 
-/**
- * Estructura tipo mapa: clave = código del estudiante, valor = objeto Estudiante.
- */
+
 class MapaEstudiantes
 {
-    /** @var array<string, Estudiante> */
+    
     private array $estudiantes = [];
 
     public function existe(string $codigo): bool
@@ -33,7 +31,7 @@ class MapaEstudiantes
         return $this->estudiantes[$codigo] ?? null;
     }
 
-    /** @return Estudiante[] */
+  
     public function todos(): array
     {
         return array_values($this->estudiantes);
